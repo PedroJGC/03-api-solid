@@ -1,12 +1,17 @@
-import type { Environment } from 'vitest'
+/** biome-ignore-all lint/suspicious/useAwait: ignore */
+/** biome-ignore-all lint/suspicious/noConsole: ignore */
+import type { Environment } from 'vitest/environments'
 
 export default (<Environment>{
   name: 'prisma',
+  transformMode: 'ssr',
   async setup() {
-    console.log('Executou')
+    console.log('Setup')
 
     return {
-      teardown() {},
+      async teardown() {
+        console.log('Teardown')
+      },
     }
   },
 })
