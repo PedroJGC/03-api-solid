@@ -8,4 +8,4 @@ CREATE TABLE "users" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "public"."users"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");

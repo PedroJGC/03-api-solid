@@ -1,10 +1,12 @@
 /** biome-ignore-all lint/suspicious/useAwait: ignore */
-/** biome-ignore-all lint/suspicious/noConsole: ignore */
 import 'dotenv/config'
 
 import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
+import { PrismaClient } from '@prisma/client'
 import type { Environment } from 'vitest/environments'
+
+const prisma = new PrismaClient()
 
 function generateDatabaseUrl(schema: string) {
   if (!process.env.DATABASE_URL) {
@@ -12,7 +14,6 @@ function generateDatabaseUrl(schema: string) {
   }
 
   const url = new URL(process.env.DATABASE_URL)
-
   url.searchParams.set('schema', schema)
 
   return url.toString()
@@ -31,7 +32,10 @@ export default {
 
     return {
       async teardown() {
-        console.log('Teardown')
+        await prisma.$executeRawUnsafe(
+          `DROP SCHEMA IF EXISTS "${schema}" CASCADE`
+        )
+        await prisma.$disconnect()
       },
     }
   },
