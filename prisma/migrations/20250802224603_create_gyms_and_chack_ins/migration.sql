@@ -5,11 +5,11 @@
 
 */
 -- AlterTable
-ALTER TABLE "public"."users" ADD COLUMN     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ALTER TABLE "users" ADD COLUMN     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN     "password_hash" TEXT NOT NULL;
 
 -- CreateTable
-CREATE TABLE "public"."check_ins" (
+CREATE TABLE "check_ins" (
     "id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "validated_at" TIMESTAMP(3),
@@ -18,7 +18,7 @@ CREATE TABLE "public"."check_ins" (
 );
 
 -- CreateTable
-CREATE TABLE "public"."gyms" (
+CREATE TABLE "gyms" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,

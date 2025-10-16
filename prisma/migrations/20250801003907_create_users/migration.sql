@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "public"."users" (
+CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
